@@ -21,7 +21,13 @@ brew install hugo
 # run app
 hugo server
 
+
+hugo server --buildDrafts
+# or
+hugo server -D
+
 # http://localhost:1313
+# http://localhost:1313/posts/my-first-post/
 ```
 
 ## Development
