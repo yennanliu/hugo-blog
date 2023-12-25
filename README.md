@@ -18,6 +18,12 @@ brew install hugo
 # hugo server
 
 
+# create post
+cd quickstart
+
+hugo new content posts/my-first-post.md
+hugo new content posts/my-second-post.md
+
 # run app
 cd quickstart
 
