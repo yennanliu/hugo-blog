@@ -44,6 +44,7 @@ hugo server -D
 ## Deployment
 
 - Netlify
+	- https://app.netlify.com/sites/frabjous-buttercream-835594/overview
 
 ## Ref
 
