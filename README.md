@@ -41,6 +41,10 @@ hugo server -D
 
 ## Development
 
+## Deployment
+
+- Netlify
+
 ## Ref
 
 - https://gohugo.io/getting-started/quick-start/
