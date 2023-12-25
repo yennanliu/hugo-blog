@@ -19,9 +19,12 @@ brew install hugo
 
 
 # run app
+cd quickstart
+
+# run app show publish posts
 hugo server
 
-
+# run app show drafts
 hugo server --buildDrafts
 # or
 hugo server -D
