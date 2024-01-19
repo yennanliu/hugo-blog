@@ -1,5 +1,5 @@
 +++
-title = 'Ml Ops'
+title = 'ML Ops'
 date = 2024-01-17T23:54:24+08:00
 draft = false
 +++
