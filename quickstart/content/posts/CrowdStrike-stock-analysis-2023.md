@@ -16,6 +16,8 @@ CrowdStrike是ㄧ家SaaS(Software as a service)的端點防毒服務提供商, �
 CEO George Kurtz, 之前曾創辦過網路安全公司Foundstone於2004被McAfee收購.
 其他Founders皆有資安相關背景
 
+<!--more-->
+
 ## 產品
 - CrowdStrike Falcon（獵鷹平台)
 	- 終端客戶端程式(pc, laptop..) 
