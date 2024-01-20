@@ -48,4 +48,8 @@ hugo server -D
 
 ## Ref
 
-- https://gohugo.io/getting-started/quick-start/
+- Hugo
+	- https://gohugo.io/getting-started/quick-start/
+
+- Google adsense
+	- https://adsense.google.com/start/
