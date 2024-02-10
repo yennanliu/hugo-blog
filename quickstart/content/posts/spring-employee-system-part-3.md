@@ -1,7 +1,7 @@
 +++
 title = 'Spring Employee System Part 3'
 date = 2024-02-10T11:31:48+08:00
-draft = true
+draft = false
 +++
 
 In Part 3, we introduce steps setting frontend Vue.js project:
