@@ -5,17 +5,22 @@ draft = false
 +++
 
 
-Introduction to Spring Employee Management System
+This is the series post of Spring Employee Management System project.
 
-In today's dynamic business environment, efficient employee management is crucial for the success of any organization. The Spring Employee Management System offers a robust solution for businesses to streamline their employee management processes effectively.
-
-<!--more-->
-
+In Part 1, we introduce high level idea such as key features, biz value.
 
 [Source code](https://github.com/yennanliu/SpringPlayground/tree/main/springEmployeeSystem)
 
+<!--more-->
+
+![image info](https://github.com/yennanliu/SpringPlayground/raw/main/springEmployeeSystem/doc/pic/demo_1.png)
+
+
+![image info](https://github.com/yennanliu/SpringPlayground/raw/main/springEmployeeSystem/doc/pic/demo_2.png)
+
 
 This project, hosted on GitHub under the repository SpringPlayground/springEmployeeSystem, leverages the power of the Spring Boot framework to deliver a comprehensive employee management platform. By combining the flexibility of Spring Boot with the convenience of modern web development practices, this system empowers businesses to manage their workforce with ease.
+
 
 ## Key Features:
 

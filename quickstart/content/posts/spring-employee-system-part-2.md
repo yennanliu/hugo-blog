@@ -7,6 +7,10 @@ draft = false
 
 In Part 2, we introduce steps setting backend Java spring boot project:
 
+[Source code](https://github.com/yennanliu/SpringPlayground/tree/main/springEmployeeSystem)
+
+<!--more-->
+
 1. Clone the Repository:
 
 ```bash
