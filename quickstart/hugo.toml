@@ -1,4 +1,13 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'Yen dev blog'
+title = 'K dev blog'
 theme = 'ananke'
+
+[params]
+author = "K"
+
+[params.shareButtons]
+networks = [ "facebook", "twitter", "email", "reddit" ]
+size = "small"
+icon = "solid"
+buttonMargin = "0.2em"
