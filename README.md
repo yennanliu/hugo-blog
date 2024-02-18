@@ -45,15 +45,14 @@ hugo server -D
 ## Development
 
 - Update config
- - `hugo.toml` at root path
+	- `hugo.toml` at root path
 - Static path
- - `quickstart/themes/ananke/static/ads.txt`
- 	- http://localhost:1313/ads.txt
-
+	- `quickstart/themes/ananke/static/ads.txt`
+ 		- http://localhost:1313/ads.txt
 
 ## Deployment
 
-- Netlify
+- Netlify (CICD)
 	- https://app.netlify.com/sites/frabjous-buttercream-835594/overview
 
 ## Ref
