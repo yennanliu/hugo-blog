@@ -53,8 +53,8 @@
   <body class="ma0 avenir bg-near-white">
 
     
-   
-  
+
+
 
   <header>
     <div class="bg-black">
@@ -85,47 +85,41 @@
 
     <main class="pb7" role="main">
       
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
+
+<article class="flex-l flex-wrap justify-between mw8 center ph3">
+   <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
+         
+         Posts
       </aside>
       
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
+      <div class="social-icons">
+         <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.org%2fposts%2fzookeeper-%25E4%25B8%2580%25E8%2587%25B4%25E6%2580%25A7%25E5%258D%2594%25E8%25AD%25B0-zab-%25E5%258E%259F%25E7%2590%2586%25E7%259E%25AD%25E8%25A7%25A3%25E4%25B8%2580%25E4%25B8%258B%2f" target="_blank" rel="noopener">
+         <img src="https://raw.githubusercontent.com/yennanliu/hugo-blog/main/quickstart/themes/ananke/assets/ananke/socials/facebook.svg" alt="Facebook" width="40" height="40">
+         </a>
+         <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fexample.org%2fposts%2fzookeeper-%25E4%25B8%2580%25E8%2587%25B4%25E6%2580%25A7%25E5%258D%2594%25E8%25AD%25B0-zab-%25E5%258E%259F%25E7%2590%2586%25E7%259E%25AD%25E8%25A7%25A3%25E4%25B8%2580%25E4%25B8%258B%2f" target="_blank" rel="noopener">
+         <img src="https://raw.githubusercontent.com/yennanliu/hugo-blog/main/quickstart/themes/ananke/assets/ananke/socials/twitter.svg" alt="Twitter" width="40" height="40">
+         </a>
+      </div>
       <h1 class="f1 athelas mt3 mb1">ZooKeeper 一致性協議 ZAB 原理，瞭解一下</h1>
       
       <p class="tracked">
-        By <strong>K</strong>
+         By <strong>K</strong>
       </p>
       
       
       
       <time class="f6 mv4 dib tracked" datetime="2024-02-12T15:50:58Z">February 12, 2024</time>
       
-
       
       
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1594395063065811"
-     crossorigin="anonymous"></script>
-     
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>一致性協議有很多種，比如 Paxos，Raft，2PC，3PC等等，在這講一種協議，ZAB 協議，該協議應該是所有一致性協議中生產環境中應用最多的了。爲什麼？因爲它是爲 Zookeeper 設計的分佈式一致性協議！</p>
+      <span class="f6 mv4 dib tracked"> - 2 minutes read </span>
+      <span class="f6 mv4 dib tracked"> - 325 words </span>
+      
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1594395063065811"
+         crossorigin="anonymous"></script>
+   </header>
+   <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>一致性協議有很多種，比如 Paxos，Raft，2PC，3PC等等，在這講一種協議，ZAB 協議，該協議應該是所有一致性協議中生產環境中應用最多的了。爲什麼？因爲它是爲 Zookeeper 設計的分佈式一致性協議！</p>
 <p>上圖顯示了 Zookeeper 如何處理集羣中的數據。所有客戶端寫入數據都是寫入到 主進程（稱爲 Leader）中，然後，由 Leader 複製到備份進程（稱爲 Follower）中。從而保證數據一致性。從設計上看，和 Raft 類似。
 那麼複製過程又是如何的呢？
 複製過程類似 2PC，ZAB 只需要 Follower 有一半以上返回 Ack 信息就可以執行提交，大大減小了同步阻塞。也提高了可用性。
@@ -214,17 +208,15 @@ from pathlib</p>
 <div class="mt6 instapaper_ignoref">
       
       
-      </div>
-    </div>
-
-    <aside class="w-30-l mt6-l">
+   </div>
+   </div>
+   <aside class="w-30-l mt6-l">
 
 
 
 
 </aside>
-
-  </article>
+</article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
