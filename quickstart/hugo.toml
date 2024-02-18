@@ -5,6 +5,7 @@ theme = 'ananke'
 
 [params]
 author = "K"
+show_reading_time = true
 
 [params.shareButtons]
 networks = [ "facebook", "twitter", "email", "reddit" ]

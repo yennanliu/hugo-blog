@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>XGBoost探索 | K dev blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.121.1">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/xgboost%E6%8E%A2%E7%B4%A2/">
+    
+
+    <meta property="og:title" content="XGBoost探索" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.org/posts/xgboost%E6%8E%A2%E7%B4%A2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-12T15:50:58+00:00" />
+<meta property="article:modified_time" content="2024-02-12T15:50:58+00:00" />
+
+<meta itemprop="name" content="XGBoost探索">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="dateModified" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="wordCount" content="26">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="XGBoost探索"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        K dev blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">XGBoost探索</h1>
+      
+      <p class="tracked">
+        By <strong>K</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-02-12T15:50:58Z">February 12, 2024</time>
+      
+
+      
+      
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1594395063065811"
+     crossorigin="anonymous"></script>
+     
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>XGBoost可以用來分類，迴歸，排序。
+支持多種語言：C++, Python, R, Java, Scala, Julia。
+參考https://xgboost.readthedocs.io/en/latest/build.html。
+注意clone時加&ndash;recursive參數。
+官方文檔</p>
+<p>直播概要：
+隨着計算機的蓬勃發展，互聯網進入大數據和人工智能時代，爲了解決信息過載和長尾商品，推薦系統成爲唯一選擇，而面對不同的業務場景，爲了解決業務痛點，會根據不同的場景特點尋找不同的方法和手段來解決推薦中實際遇到的問題。在智慧家庭領域，</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null}},{&ldquo;type&rdquo;:&ldquo;blockq</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null}},{&ldquo;type&rdquo;:&ldquo;blockq</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  K dev blog 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>[NOTE in progress] Simulation Optimization | K dev blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.121.1">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/note-in-progress-simulation-optimization/">
+    
+
+    <meta property="og:title" content="[NOTE in progress] Simulation Optimization" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.org/posts/note-in-progress-simulation-optimization/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-12T15:50:58+00:00" />
+<meta property="article:modified_time" content="2024-02-12T15:50:58+00:00" />
+
+<meta itemprop="name" content="[NOTE in progress] Simulation Optimization">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="dateModified" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="wordCount" content="428">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="[NOTE in progress] Simulation Optimization"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        K dev blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">[NOTE in progress] Simulation Optimization</h1>
+      
+      <p class="tracked">
+        By <strong>K</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-02-12T15:50:58Z">February 12, 2024</time>
+      
+
+      
+      
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1594395063065811"
+     crossorigin="anonymous"></script>
+     
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>簡單記錄一下關於仿真優化的一些知識點和思考。主要基於：Handbook of Simulation Optimization, Michael Fu
+Table of Contents
+Overview
+Discrete Optimization
+Three fundamental type of errors:
+Optimality Conditions
+Different scenarios depending on the solution space size:
+Ranking and Selection
+Ordinal Optimization (OO)
+Globally Convergent Adaptive Random Search
+Locally Convergent Adaptive Random Search
+Commercial Solvers
+這是本書的overview 實際上也可以看做是這一field的overview.
+一種分類方式：Discrete vs Continuous
+Since stochasticity is the keyword, some base knowledge is important for DO as well as for CO.
+Two formulations are concerned: 
+IZF (Frequentist)
+Assume  which is the most difficult case. The objective is to find x1 which is at least -better than all the others.
+Based on the principle of the above 3 procedures, further procedures include:
+BF (Bayesian) (Does not provide PSC guarantees)
+Used when prior information is available.
+Helps to choose the next solution to explore, based on prior information and previous sample results, and also the simulation budgets. This involves a MDP problem and can be possibly solved by ADP/RL.
+Conclusion
+Brankle et al. found that no R&amp;S procedure is dominent in all situations. (thousands of pb structures tested). BF is often more efficient in terms of nb of samples, but it doesn&rsquo;t provide correct-selection optimality guarantee like frequentist does.
+When the solution space is large, OO proposes &ldquo;sofe optimization&rdquo;, which selects a subset S from  and limit the analysis to S. We are interested in the probability that , where T is the set of top t solutions in the whole space.  is called the alignment level and the probability is alignment probability.
+Two basic idea behind OO:
+OO is more an analysis than new algorithm, the procedure will be:
+In practical i don&rsquo;t think this is so interesting, since it just tells you that, the larger  is, the better.
+Designed for large but finite solution space. Guarantee 
+Generic GCARS:
+Several algoritms are described:
+Similar to GCARC, but with a statistical procedure to test the local optimality of .
+COMPASS (Convergen Optimization via Most-Promising-Area Stochastic Search)
+ 
+AHA (Adaptive Hyperbox Algo)
+Like COMPASS, but define the neighborhood as the hyperbox around x* :  where d is the dimension of x.
+Most simulation modeling softwares includes SBO tool, but most of them are based on R&amp;S or meta-heuristics like SA. Meta-heuristics have been observed to be effective on difficult deterministic optimization problems but they usually provide no performance guarantees. Some advises are:
+Most of the above mentioned algorithms are black-box algorithms that do not depend on problem structures. This can be considered in defining the neighborhood in LCRS, for instance.
+ 
+ 
+ </p>
+<p>直播概要：
+隨着計算機的蓬勃發展，互聯網進入大數據和人工智能時代，爲了解決信息過載和長尾商品，推薦系統成爲唯一選擇，而面對不同的業務場景，爲了解決業務痛點，會根據不同的場景特點尋找不同的方法和手段來解決推薦中實際遇到的問題。在智慧家庭領域，</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null}},{&ldquo;type&rdquo;:&ldquo;blockq</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null}},{&ldquo;type&rdquo;:&ldquo;blockq</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;blockquote&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null</p>
+<p>{&ldquo;type&rdquo;:&ldquo;doc&rdquo;,&ldquo;content&rdquo;:[{&ldquo;type&rdquo;:&ldquo;paragraph&rdquo;,&ldquo;attrs&rdquo;:{&ldquo;indent&rdquo;:0,&ldquo;number&rdquo;:0,&ldquo;align&rdquo;:null,&ldquo;origin&rdquo;:null},&ldquo;content&rdquo;:[{&ldquo;typ</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  K dev blog 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

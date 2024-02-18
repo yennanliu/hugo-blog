@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Spring中Transactional 失效的解決方案，讓我們一起探討一下 | K dev blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.121.1">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/spring%E4%B8%ADtransactional-%E5%A4%B1%E6%95%88%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88%E8%AE%93%E6%88%91%E5%80%91%E4%B8%80%E8%B5%B7%E6%8E%A2%E8%A8%8E%E4%B8%80%E4%B8%8B/">
+    
+
+    <meta property="og:title" content="Spring中Transactional 失效的解決方案，讓我們一起探討一下" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.org/posts/spring%E4%B8%ADtransactional-%E5%A4%B1%E6%95%88%E7%9A%84%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88%E8%AE%93%E6%88%91%E5%80%91%E4%B8%80%E8%B5%B7%E6%8E%A2%E8%A8%8E%E4%B8%80%E4%B8%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-12T15:50:58+00:00" />
+<meta property="article:modified_time" content="2024-02-12T15:50:58+00:00" />
+
+<meta itemprop="name" content="Spring中Transactional 失效的解決方案，讓我們一起探討一下">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="dateModified" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="wordCount" content="169">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Spring中Transactional 失效的解決方案，讓我們一起探討一下"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        K dev blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Spring中Transactional 失效的解決方案，讓我們一起探討一下</h1>
+      
+      <p class="tracked">
+        By <strong>K</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-02-12T15:50:58Z">February 12, 2024</time>
+      
+
+      
+      
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1594395063065811"
+     crossorigin="anonymous"></script>
+     
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>寫在前面：2020年面試必備的Java後端進階面試題總結了一份複習指南在Github上，內容詳細，圖文並茂，有需要學習的朋友可以Star一下！
+GitHub地址：https://github.com/abel-max/Java-Study-Note/tree/master
+1 .在需要事務管理的地方加@Transactional 註解。@Transactional 註解可以被應用於接口定義和接口方法、類定義和類的 public 方法上 。
+2 . @Transactional 註解只能應用到 public 可見度的方法上 。 如果你在 protected、private 或者 package-visible 的方法上使用 @Transactional 註解，它也不會報錯， 但是這個被註解的方法將不會展示已配置的事務設置。
+3 . 注意僅僅 @Transactional 註解的出現不足於開啓事務行爲，它僅僅 是一種元數據。必須在配置文件中使用配置元素，才真正開啓了事務行爲。
+最近在項目中發現註解無效，經過跟蹤源代碼發現了問題，於是在網上找到相同出現此問題的人，以下爲原文，講解的很詳細：
+只要避開Spring目前的AOP實現上的限制，要麼都聲明要事務，要麼分開成兩個類，要麼直接在方法裏使用編程式事務
+Spring的聲明式事務，我想就不用多介紹了吧，一句話“自從用了Spring AOP啊，事務管理真輕鬆啊，真輕鬆；事務管理代碼沒有了，腦不酸了，手不痛了，一口氣全配上了事務；輕量級，測試起來也簡單，嘿！”。不管從哪個角度看，輕量級聲明式事務都是一件解放生產力的大好事。所以，我們“一直用它”。
+不過，最近的一個項目裏，卻碰到了一個事務管理上的問題：有一個服務類，其一個聲明瞭事務的方法，裏面做了三次插入SQL操作，但是在後面出錯回滾時，卻發現前面插入成功了，也是說，這個聲明瞭事務的方法，實際上並沒有真正啓動事務！怎麼回事呢？難道Spring的聲明式事務失效了？
+其實以前也會碰到有人說，Spring的事務配置不起作用，但是根據第一反應和以往經驗，我總會告訴他，肯定是你的配置有問題啦；所以這一次，我想也不會例外，大概是把事務註解配在了接口上而不是實現方法上，或者，如果是用XML聲明方式的話，很可能是切入點的表達式沒有配對。
+不過，在檢查了他們的配置後，卻發現沒有配置問題，該起事務的實現方法上，用了@Transactional事務註解聲明，XML裏也配了註解驅動&lt;tx:annotation-driven …/&gt;，配置很正確啊，怎麼會不起作用？
+我很納悶，於是往下問：
+問1：其他方法有這種情況麼？
+答1：沒有。
+問2：這個方法有什麼特別的麼（以下簡稱方法B）？
+答2：就是調後臺插了三條記錄啊，沒啥特別的。
+問3：這個方法是從Web層直接調用的吧？
+答3：不是，是這個Service類（以下簡稱ServiceA）的另外一個方法調過來的（以下簡稱方法A）。
+問4：哦，那個調用它的方法配了事務麼（問題可能在這了）？
+答4：沒有。
+問5：那WEB層的Action（用的是Struts2），調用的是沒有聲明事務的方法A，方法A再調用聲明瞭事務的方法B？
+答5：對的。
+問6：你直接在方法A上加上事務聲明看看
+答6：好。。。
+看來可能找到問題所在了，於是把@Transactional也加在方法A上，啓動項目測試，結果是：事務正常生效，方法A和方法B都在一個事務裏了。
+好了，現在總結一下現象：
+1、ServiceA類爲Web層的Action服務
+2、Action調用了ServiceA的方法A，而方法A沒有聲明事務（原因是方法A本身比較耗時而又不需要事務）
+3、ServiceA的方法A調用了自己所在class的方法B，而方法B聲明瞭事務，但是方法B的事務聲明在這種情況失效了。
+4、如果在方法A上也聲明事務，則在Action調用方法A時，事務生效，而方法B則自動參與了這個事務。
+我讓他先把A也加上事務聲明，決定回來自己再測一下。
+這個問題，表面上是事務聲明失效的問題，實質上很可能是Spring的AOP機制實現角度的問題。
+我想到很久以前研究Spring的AOP實現時發現的一個現象：對於以Cglib方式增強的AOP目標類，會創建兩個對象，一個事Bean實例本身，一個是Cglib增強代理對象，而不僅僅是隻有後者。我曾經疑惑過這一點，但當時沒有再仔細探究下去。
+我們知道，Spring的AOP實現方式有兩種：
+1、Java代理方式；
+2、Cglib動態增強方式，這兩種方式在Spring中是可以無縫自由切換的。
+Java代理方式的優點是不依賴第三方jar包，缺點是不能代理類，只能代理接口。
+Spring通過AopProxy接口，抽象了這兩種實現，實現了一致的AOP方式：</p>
+<p>現在看來，這種抽象同樣帶了一個缺陷，那就是抹殺了Cglib能夠直接創建普通類的增強子類的能力，Spring相當於把Cglib動態生成的子類，當普通的代理類了，這也是爲什麼會創建兩個對象的原因。下圖顯示了Spring的AOP代理類的實際調用過程：</p>
+<p>因此，從上面的分析可以看出，methodB沒有被AopProxy通知到，
+導致最終結果是： 被Spring的AOP增強的類，在同一個類的內部方法調用時，其被調用方法上的增強通知將不起作用。
+而這種結果，會造成什麼影響呢：
+1：內部調用時，被調用方法的事務聲明將不起作用
+2：換句話說，你在某個方法上聲明它需要事務的時候，如果這個類還有其他開發者，你將 不能保證這個方法真的會在事務環境中
+3：再換句話說，Spring的事務傳播策略在內部方法調用時將不起作用。
+不管你希望某個方法需要單獨事務，是RequiresNew，還是要嵌套事務，要Nested，等等，統統不起作用。
+4：不僅僅是事務通知，所有你自己利用Spring實現的AOP通知，都會受到同樣限制。。。。
+問題的原因已經找到，其實，我理想中的AOP實現，應該是下面這樣：</p>
+<p>只要一個Cglib增強對象就好，對於Java代理方式，我的選擇是毫不猶豫的拋棄。
+至於前面的事務問題，只要避開Spring目前的AOP實現上的限制，要麼都聲明要事務，要麼分開成兩個類，要麼直接在方法裏使用編程式事務，那麼一切OK。</p>
+<p>近日，Apache Dubbo 發佈了 3.3 分支大版本 3.3.0-beta.1，相較於 3.2 系列版本，3.3.0-beta 引入了一些重量級的功能升級，按照社區規劃，3.3 也將是 Dubbo3 非常重要的一個里程碑大版本，在 3</p>
+<p>本文分享自華爲雲社區《應用安全防護ESAPI》，作者： Uncle_Tom。</p>
+<ol>
+<li>ESAPI 簡介
+OWASP Enterprise Security API (ESAPI）是一個免費、開源的web應用程序安全控制庫，使程序員更容易編寫</li>
+</ol>
+<p>一、平臺介紹
+財務自營計費主要承接京東自營數據在整個供應鏈中由C端轉B端的功能實現，在整個供應鏈中屬於靠後的階段了，系統主要功能是計費和向B端的彙總。
+二、問題描述
+近年來自營計費數據量大增，有百億+的數據量，一天中彙總佔據了一半的數據</p>
+<p>原文地址：https://www.baeldung.com/spring-boot-testing
+1 概覽
+在這個教程中，我們會帶你看看如果使用 Spring Boot 中的框架編寫測試用例。內容會覆蓋單元測試，也會有在執行測試用例</p>
+<p>隨着 AI 智能浪潮到來，AI 智能編碼助手成爲越來越多開發者的必備工具，Github Copilot、Amazon CodeWhisperer 等 AI 編碼工具陸續登場，去年雲棲大會阿里雲發佈的 “通義靈碼” 同樣令人期待。
+通義靈碼</p>
+<p>springboot的事務也主要分爲兩大類，一是xml聲明式事務，二是註解事務，註解事務也可以實現類似聲明式事務的方法，關於註解聲明式事務，目前網上搜索不到合適的資料，所以在這裏，我將自己查找和總結的幾個方法寫到這裏，大家共同探討
+引入依賴</p>
+<p>本文分享自華爲雲社區《服務運行時動態掛載JavaAgent和插件——Sermant熱插拔能力解析》，作者：華爲雲高級軟件工程師 欒文飛
+一、概述
+Sermant是基於Java字節碼增強技術的無代理服務網格，其利用Java字節碼增強技術，爲</p>
+<p>如果你是企業經營者，在爲企業降本增效而發愁；
+如果你是企業的開發、運維或架構同學，在日常工作中被開發效率、交付問題等困擾…… 歡迎來了解 Koupleless（原 SOFAServerless）！
+現在，Koupleless 重磅發佈了</p>
+<p>作者：饒子昊、楊龍
+應用複雜度提升，根因定位困難重重
+隨着軟件技術發展迭代，很多企業軟件系統也逐步從單體應用向雲原生微服務架構演進，一方面讓應用實現高併發、易擴展、開發敏捷度高等效果，但另外一方面也讓軟件應用鏈路變得越來越長，依賴的各種外部</p>
+<p>背景介紹
+應用安裝包的體積影響着用戶下載量、安裝時長、用戶磁盤佔用量等多個方面，據Google Play統計，應用體積每增加6MB，安裝的轉化率將下降1%。
+安裝包的體積受諸多方面影響，針對dex、資源文件、so文件都有不同的優化策略，在</p>
+<p>版本依賴</p>
+<ol>
+<li>spring-kafka: 2.2.2</li>
+<li>kafka-clients: 2.0.0
+使用示例</li>
+<li>構建監聽，acknowledgingMessageListener 爲接口org.springframework.k</li>
+</ol>
+<p> 
+Automotive Android OS多屏多窗口
+DisplayAreaPolicy.Provider
+    DisplayAreaPolicy用戶設置DisplayArea的層級結構。DisplayAreaPolicy.Pr</p>
+<p>一.背景
+性能優化是一場永無止境的旅程。
+到家門店系統，作爲到家核心基礎服務之一，門店C端接口有着調用量高，性能要求高的特點。
+C端服務經過演進，核心接口先查詢本地緩存，如果本地緩存沒有命中，再查詢Redis。本地緩存命中率99%，服務性</p>
+<p>暢捷通介紹
+暢捷通是中國領先的小微企業財稅及業務雲服務提供商，成立於2010年。暢捷通在2021年中國小微企業雲財稅市場份額排名第一，在產品前瞻性及行業全覆蓋方面領跑市場，位居中國小微企業雲財稅廠商矩陣領軍象限前列。作爲專注小微企業雲服務</p>
+<p>Seata 是一款開源的分佈式事務解決方案，致力於在微服務架構下提供高性能和簡單易用的分佈式事務服務。在今年的開源之夏活動中，我加入了 Apache Seata (Incubator) 社區，完成了開源之夏的課題，並從此一直積極參與社區。我</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  K dev blog 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

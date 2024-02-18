@@ -24,6 +24,9 @@ cd quickstart
 hugo new content posts/my-first-post.md
 hugo new content posts/my-second-post.md
 
+# rebuild
+hugo
+
 # run app
 cd quickstart
 
@@ -40,6 +43,10 @@ hugo server -D
 ```
 
 ## Development
+
+- Update config
+	- `hugo.toml` at root path
+
 
 ## Deployment
 

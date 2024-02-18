@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>算法系列01----插入排序 | K dev blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.121.1">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%9701----%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+    
+
+    <meta property="og:title" content="算法系列01----插入排序" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.org/posts/%E7%AE%97%E6%B3%95%E7%B3%BB%E5%88%9701----%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-02-12T15:50:58+00:00" />
+<meta property="article:modified_time" content="2024-02-12T15:50:58+00:00" />
+
+<meta itemprop="name" content="算法系列01----插入排序">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="dateModified" content="2024-02-12T15:50:58+00:00" />
+<meta itemprop="wordCount" content="155">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="算法系列01----插入排序"/>
+<meta name="twitter:description" content=""/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        K dev blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">算法系列01----插入排序</h1>
+      
+      <p class="tracked">
+        By <strong>K</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-02-12T15:50:58Z">February 12, 2024</time>
+      
+
+      
+      
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1594395063065811"
+     crossorigin="anonymous"></script>
+     
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>新建一個指針，指針左邊的所有元素都是有序的。但是他們的位置並不是最終位置，一個指針從左向右掃描，若指針所在處的元素比左邊元素小，則將該元素向前浮動至適當位置，使指針左側元素仍然保持有序。當指針掃描到整個數組元素的末尾時，數組排序完成。</p>
+<p>根據原理設計算法：
+輸出結果：
+1）複雜度
+2）插入排序法特點</p>
+<p>強化學習概覽
+This overview is largely based on this article: https://medium.com/@SmartLabAI/reinforcement-learning-algorithms</p>
+<p>分治基本思想影響算法複雜度的因素經典案例1 二分檢索設計思想僞碼2 二分歸併設計思想僞碼3 漢諾塔設計思想僞碼4 快速排序設計思想僞碼實例5 快速傅里葉變換（信號平滑處理）問題描述設計&amp;分析減少子問題個數案例：大數相乘設計思想參考</p>
+<p>XGBoost可以用來分類，迴歸，排序。
+支持多種語言：C++, Python, R, Java, Scala, Julia。
+安裝
+參考https://xgboost.readthedocs.io/en/latest/buil</p>
+<p>NDCG（Normalized Discounted Cumulative Gain）: 維基百科寫的很清楚。
+注意理解這四個詞。
+Discounted：順序影響指標。
+Normalized：消除文檔個數對指標的影響。</p>
+<p>商品關聯分析
+關聯
+relevance: 主要用在互聯網的內容和文檔上，比如搜索引擎算法文檔中之間的關聯性。
+association: 用在實際的事物之上，比如電子商務網站上的商品之間的關聯度。
+支持度（support）：數據集中</p>
+<p>簡單記錄一下關於仿真優化的一些知識點和思考。主要基於：Handbook of Simulation Optimization, Michael Fu
+Table of Contents
+Overview
+Discrete Optimiza</p>
+<p>點這個：
+<a href="https://towardsdatascience.com/a-road-map-for-deep-learning-b9aee0b2919f">https://towardsdatascience.com/a-road-map-for-deep-learning-b9aee0b2919f</a></p>
+<p>Currently learning stochastic optimization (SO) theory, I will note important content here. Some book references ar</p>
+<p>Reading notes of the paper &ldquo;Distributed Optimization and Statistical Learning via ADMM&rdquo; by Boyd, Parikh, Chu, Peleato a</p>
+<p>Source:http://www.seas.ucla.edu/~vandenbe/ee236c.html
+ 
+Introduction
+Outline
+First-order algorithms
+Decomposition and s</p>
+<p>Overview of gradient descent algorithms
+ 
+ 
+An overview of gradient descent optimization algorithms
+Gradient descent is</p>
+<p>function TreeNode(val) {
+this.val = val;
+this.left = this.right = null;
+}
+解一：遞歸
+先判斷樹結構是否爲null，如果是null，直接</p>
+<p>雖然網上已經很多這種排序算法了，但是爲了讓自己更熟悉一點（也順便寫篇博客），所以準備把基本的那幾種算法原理及代碼重新寫一遍
+今天先來冒泡算法吧，冒泡算法的基本原理就是通過不斷的比較兩個相鄰元素的大小，如果前一個比後一個大，則交換兩個元素的</p>
+<p>【題目描述】
+The little cat is so famous, that many couples tramp over hill and dale to Byteland, and asked the little cat to</p><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  K dev blog 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
