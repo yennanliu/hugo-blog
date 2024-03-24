@@ -62,3 +62,7 @@ hugo server -D
 
 - Google adsense
 	- https://adsense.google.com/start/
+
+- shortcode in Hugo
+	- https://blog.iyu.icu/posts/shortcode_bilibili/
+	- `themes/ananke/layouts/shortcodes/520call.html`
